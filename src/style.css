@@ -80,11 +80,9 @@ p {
 /* footer */
 
 /* calendar */
-
 .calendar {
   margin-top: 30px;
 }
-
 .calendar-list {
   display: flex;
   justify-content: space-around;
