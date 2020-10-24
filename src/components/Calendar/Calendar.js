@@ -1,11 +1,31 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './calendar.css';
+import FetchData from'../../service/FetchData' ;
 
-const Calendar = () => (
+import Main from '../Main/Main'
+
+const Calendar = () => {
+	const fetchData = new FetchData();
+
+	const [data, setData] = useState([]);
+
+
+	useEffect(() => {
+		fetchData.getLaunches()
+		 .then((data) => setData(data))
+	}, []);
+		 console.log(data);
+
+
+		return(
+		<>
+	  <Main/>
   	<section className="calendar">
 		<div className="container">
 			<ul className="calendar-list">
-				<li className="calendar-item">
+				{
+					data.map(item => (
+					<li className="calendar-item">
 					<article className="launches">
 						<div className="launches-image">
 							<img src="https://images2.imgbox.com/3c/0e/T8iJcSN3_o.png" alt=""/>
@@ -17,6 +37,9 @@ const Calendar = () => (
 						</div>
 					</article>
 				</li>
+				))
+				}
+
 
 				<li className="calendar-item">
 					<article className="launches">
@@ -68,7 +91,7 @@ const Calendar = () => (
 			</ul>
 		</div>
 	</section>
-
-);
+</>
+)};
 
 export default Calendar
