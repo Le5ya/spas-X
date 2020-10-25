@@ -5,26 +5,23 @@ const video = {
   'Falcon 1': 'moon',
   'Falcon 9': 'earth',
   'Falcon Heavy': 'mars',
-   other: 'space',
+   other: 'space'
 }
 
-const Main = ({ rocket }) => {
-    return(
+const Main = ({ rocket, name }) => (
     <section className="main">
-        <h1 className="title">
-          { rocket }
-        </h1>
-        <div className="video-container">
+        <h1 className="title">{name || rocket}</h1>
+        {rocket && <div className="video-container">
           <video 
             className="video" 
             autoPlay loop muted 
             src={`./video/${video.hasOwnProperty(rocket) ? 
-              video[rocket] : 
-              video.other}.mp4`}
-              />
-        </div>
+              video[rocket] :  video.other}.mp4`
+            }
+         />
+      </div>}
     </section>
 
-    )};
+    );
 
 export default Main;
